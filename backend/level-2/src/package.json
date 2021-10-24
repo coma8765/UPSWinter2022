@@ -1,0 +1,23 @@
+{
+  "name": "level-2--nodejs",
+  "version": "0.0.1",
+  "description": "UPS Backend level-2",
+  "main": "index.js",
+  "author": "coma8765",
+  "license": "AFL-3.0",
+  "type": "module",
+  "dependencies": {
+    "apollo-server-express": "^3.4.0",
+    "esm": "^3.2.25",
+    "express": "^4.17.1",
+    "graphql": "^15.6.1",
+    "pg": "^8.7.1"
+  },
+  "scripts": {
+    "prod": "node  --experimental-specifier-resolution=node src/index.mjs",
+    "dev": "nodemon  --experimental-specifier-resolution=node src/index.mjs"
+  },
+  "devDependencies": {
+    " nodemon": "^2.0.13"
+  }
+}

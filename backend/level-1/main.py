@@ -1,17 +1,17 @@
 import string
 import random
-
+import json
 from flask import Flask, jsonify, request, Response
 from flask_sqlalchemy import SQLAlchemy
-import json
 
-"""You may set server port this."""
-PORT = 5000
+
+PORT = 5000  # You may set server port this.
+SQLITE_DB_PATH = "sqlite3.db"
 
 app = Flask(__name__)
 
 app.config['JSON_SORT_KEYS'] = False
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///sqlite3.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + SQLITE_DB_PATH
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 
@@ -119,5 +119,14 @@ def post_res(response):
     return response
 
 
+def prepare_db():
+    """Need for create db file with information about shorten urls."""
+    from os.path import isfile
+
+    if not isfile(SQLITE_DB_PATH):
+        db.create_all()
+
+
 if __name__ == '__main__':
+    prepare_db()  # May be commented after create db, file sqlite3.db
     app.run(port=PORT, debug=False)
